@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kelas');
             $table->string('jurusan');
+            $table->integer('no');
             $table->timestamps();
         });
     }

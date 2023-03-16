@@ -1,12 +1,11 @@
 <html>
 <head>
   @yield('title')
-  {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css"> --}}
   <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="/db/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/bs/css/bootstrap.min.css">
     <link rel="shortcut icon" href="/img/logo.png">
@@ -66,12 +65,12 @@
     @include('sweetalert::alert')
     <script>
         $(document).ready( function () {
-        $('#myTable').DataTable();
+        $('#myTable').DataTable({"order":[]});
         } );
     </script>
     <script>
         $(document).ready( function () {
-        $('#myTable1').DataTable();
+        $('#myTable1').DataTable({"order":[]});
         } );
     </script>
 

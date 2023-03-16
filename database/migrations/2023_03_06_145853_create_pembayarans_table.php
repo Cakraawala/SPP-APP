@@ -20,7 +20,9 @@ return new class extends Migration
             $table->foreignId('id_spp')->index();
             $table->foreign('id_spp')->references('id')->on('spp')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('jumlah_bayar');
+            $table->integer('bulan');
             $table->integer('tahun_bayar');
+            $table->date('tanggal_bayar');
             $table->timestamps();
         });
     }

@@ -9,4 +9,8 @@ class Kelas extends Model
 {
     use HasFactory;
     protected $table = 'kelas';
+    protected $guarded = ['id'];
+    public function Siswa(){
+        return $this->hasMany(Siswa::class,'id_kelas');
+    }
 }

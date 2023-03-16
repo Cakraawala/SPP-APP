@@ -1,156 +1,156 @@
+<script type="text/javascript">
+   window.addEventListener("load", () => {
+  clock();
+  function clock() {
+    const today = new Date();
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+    // get time components
+    const hours = today.getHours();
+    const minutes = today.getMinutes();
+    const seconds = today.getSeconds();
 
-                    <!-- Topbar Search -->
-                    {{-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
+    //add '0' to hour, minute & second when they are less 10
+    const hour = hours < 10 ? "0" + hours : hours;
+    const minute = minutes < 10 ? "0" + minutes : minutes;
+    const second = seconds < 10 ? "0" + seconds : seconds;
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+    //make clock a 12-hour time clock
+    const hourTime = hour > 12 ? hour - 12 : hour;
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+    // if (hour === 0) {
+    //   hour = 12;
+    // }
+    //assigning 'am' or 'pm' to indicate time of the day
+    const ampm = hour < 12 ? "AM" : "PM";
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
+    // get date components
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    const day = today.getDate();
 
-                                <a class="dropdown-item text-center small text-black-500" href="#">Show All Alerts</a>
-                                <a class="dropdown-item text-center small text-black-500" href="/dashboard/markall">Mark ALL as Read</a>
-                            </div>
-                        </li>
+    //declaring a list of all months in  a year
+    const monthList = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Augustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember"
+    ];
 
-                        <!-- Nav Item - Messages -->
-                        {{-- <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6> --}}
+    //get current date and time
+    const date =  day + " "+ monthList[month] + " " + ", " + year;
+    const time = hourTime + ":" + minute + ":" + second + " "+ampm;
+
+    //combine current date and time
+    const dateTime = date + " - " + time;
+
+    //print current date and time to the DOM
+    document.getElementById("date-time").innerHTML = dateTime;
+    setTimeout(clock, 1000);
+  }
+});
+    </script>
+ <!-- Sidebar Toggle (Topbar) -->
+<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+     <i class="fa fa-bars"></i>
+ </button>
+
+ <!-- Topbar Search -->
+ <div
+     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+     <div id="clock">
+        <div class="d-flex text-gray-800">
+            <h4 class="me-2">Tanggal</h4>
+            <h4 id="date-time" class="text-gray-800"></h3>
+        </div>
+      </div>
+ </div>
+
+ <!-- Topbar Navbar -->
+ <ul class="navbar-nav ml-auto">
+
+     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+     <li class="nav-item dropdown no-arrow d-sm-none">
+         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-search fa-fw"></i>
+         </a>
+         <!-- Dropdown - Messages -->
+         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+             aria-labelledby="searchDropdown">
+             <form class="form-inline mr-auto w-100 navbar-search">
+                 <div class="input-group">
+  <input type="text" class="form-control bg-light border-0 small"
+      placeholder="Search for..." aria-label="Search"
+      aria-describedby="basic-addon2">
+  <div class="input-group-append">
+      <button class="btn btn-primary" type="button">
+          <i class="fas fa-search fa-sm"></i>
+      </button>
+  </div>
+                 </div>
+             </form>
+         </div>
+     </li>
+
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+             aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Alerts Center
+             </h6>
+
+             <a class="dropdown-item text-center small text-black-500" href="#">Show All Alerts</a>
+             <a class="dropdown-item text-center small text-black-500" href="/dashboard/markall">Mark ALL as Read</a>
+         </div>
+     </li>
 
 
-                                {{-- <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a> --}}
-                                {{-- <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li> --}}
+     <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+     <!-- Nav Item - User Information -->
+     <li class="nav-item dropdown no-arrow">
+         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Halo, {{ Auth()->user()->nama }}!</span>
+             {{-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> --}}
+                 <i class="fa fa-user-circle img-profile rounded-circle fa-lg mt-3 me-2" aria-hidden="true"></i>
+         </a>
+         <!-- Dropdown - User Information -->
+         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+             aria-labelledby="userDropdown">
+             <a class="dropdown-item" href="#">
+                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                 Profile
+             </a>
+             <a class="dropdown-item" href="#">
+                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                 Settings
+             </a>
+             <a class="dropdown-item" href="#">
+                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                 Activity Log
+             </a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                 Logout
+             </a>
+         </div>
+     </li>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Halo, !</span>
-                                {{-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> --}}
-                                    <i class="fa fa-user-circle img-profile rounded-circle fa-lg mt-3 me-2" aria-hidden="true"></i>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
+ </ul>

@@ -37,35 +37,33 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Inner</h6>
-                <a class="collapse-item" href="/dashboard/data/room">Room</a>
-                <a class="collapse-item" href="/dashboard/data/status">Status Room</a>
-                <a class="collapse-item" href="/dashboard/data/type">Type Room</a>
+                <a class="collapse-item" href="/dashboard/data/siswa">Siswa</a>
+                <a class="collapse-item" href="/dashboard/data/kelas">Kelas</a>
+                <a class="collapse-item" href="/dashboard/data/spp">SPP</a>
+                {{-- <a class="collapse-item" href="/dashboard/data/type">Type Room</a> --}}
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item {{ Request::is('dashboard/user*') ? 'active' :'' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseuser"
-            aria-expanded="true" aria-controls="collapseuser">
-            <i class="fas fa-fw fa-wrench"></i>
+    <!-- Divider -->
+    {{-- <hr class="sidebar-divider"> --}}
+    <li class="nav-item {{ Request::is('dashboard/user*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsethree"
+            aria-expanded="true" aria-controls="collapsethree">
+            <i class="fas fa-user ms-1"></i>
             <span>User</span>
         </a>
-        <div id="collapseuser" class="collapse" aria-labelledby="headinguser"
-            data-parent="#accordionSidebar">
+        <div id="collapsethree" class="collapse" aria-labelledby="headingthree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Data</h6>
-                <a class="collapse-item" href="/dashboard/user">User</a>
-                {{-- <a class="collapse-item" href="user-border.html">Borders</a>
-                <a class="collapse-item" href="user-animation.html">Animations</a>
-                <a class="collapse-item" href="user-other.html">Other</a> --}}
+                <h6 class="collapse-header">Inner</h6>
+                <a class="collapse-item" href="/dashboard/data/user">User & Admin</a>
+
+                {{-- <a class="collapse-item" href="/dashboard/data/type">Type Room</a> --}}
             </div>
         </div>
     </li>
-
-    <!-- Divider -->
     <hr class="sidebar-divider">
-
     <!-- Heading -->
     <div class="sidebar-heading">
         Addons
@@ -76,14 +74,14 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Pesan</span>
+            <span>Transaksi</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Order now:</h6>
-                <a class="collapse-item" href="/dashboard/order">Order</a>
-                <h6 class="collapse-header">Data Transactions:</h6>
-                <a class="collapse-item" href="/dashboard/order/history-pay">History Payment</a>
+                <h6 class="collapse-header">Data</h6>
+                <a class="collapse-item" href="/dashboard/pembayaran">Pembayaran</a>
+                <h6 class="collapse-header">Reports</h6>
+                <a class="collapse-item" href="/dashboard/order">Laporan</a>
 
             </div>
         </div>

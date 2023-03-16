@@ -15,45 +15,114 @@ class KelasSeeder extends Seeder
     {
         Kelas::create([
             'kelas' => '10',
-            'jurusan' => 'RPL'
+            'jurusan' => 'RPL',
+            'no' => 1
         ]);
-
-        Kelas::create([
-            'kelas' => '11',
-            'jurusan' => 'RPL'
-        ]);
-
-        Kelas::create([
-            'kelas' => '12',
-            'jurusan' => 'RPL'
-        ]);
-
         Kelas::create([
             'kelas' => '10',
-            'jurusan' => 'MM'
+            'jurusan' => 'MM',
+            'no' => 1
         ]);
-
-        Kelas::create([
-            'kelas' => '11',
-            'jurusan' => 'MM'
-        ]);
-
-        Kelas::create([
-            'kelas' => '12',
-            'jurusan' => 'MM'
-        ]);
-
         Kelas::create([
             'kelas' => '10',
-            'jurusan' => 'TKJ'
+            'jurusan' => 'MM',
+            'no' => 2
+        ]);
+        Kelas::create([
+            'kelas' => '10',
+            'jurusan' => 'MM',
+            'no' => 3
+        ]);
+        Kelas::create([
+            'kelas' => '10',
+            'jurusan' => 'TKJ',
+            'no' => 1
+        ]);
+        Kelas::create([
+            'kelas' => '10',
+            'jurusan' => 'TKJ',
+            'no' => 2
+        ]);
+        Kelas::create([
+            'kelas' => '10',
+            'jurusan' => 'TKJ',
+            'no' => 3
+        ]);
+
+
+
+        Kelas::create([
+            'kelas' => '11',
+            'jurusan' => 'RPL',
+            'no' => 1
         ]);
         Kelas::create([
             'kelas' => '11',
-            'jurusan' => 'TKJ'
+            'jurusan' => 'MM',
+            'no' => 1
+        ]);
+        Kelas::create([
+            'kelas' => '11',
+            'jurusan' => 'MM',
+            'no' => 2
+        ]);
+        Kelas::create([
+            'kelas' => '11',
+            'jurusan' => 'MM',
+            'no' => 3
+        ]);
+        Kelas::create([
+            'kelas' => '11',
+            'jurusan' => 'TKJ',
+            'no' => 1
+        ]);
+        Kelas::create([
+            'kelas' => '11',
+            'jurusan' => 'TKJ',
+            'no' => 2
+        ]);
+        Kelas::create([
+            'kelas' => '11',
+            'jurusan' => 'TKJ',
+            'no' => 3
+        ]);
+
+
+
+        Kelas::create([
+            'kelas' => '12',
+            'jurusan' => 'RPL',
+            'no' => 1
         ]);
         Kelas::create([
             'kelas' => '12',
-            'jurusan' => 'TKJ'
+            'jurusan' => 'MM',
+            'no' => 1
+        ]);
+        Kelas::create([
+            'kelas' => '12',
+            'jurusan' => 'MM',
+            'no' => 2
+        ]);
+        Kelas::create([
+            'kelas' => '12',
+            'jurusan' => 'MM',
+            'no' => 3
+        ]);
+        Kelas::create([
+            'kelas' => '12',
+            'jurusan' => 'TKJ',
+            'no' => 1
+        ]);
+        Kelas::create([
+            'kelas' => '12',
+            'jurusan' => 'TKJ',
+            'no' => 2
+        ]);
+         Kelas::create([
+            'kelas' => '12',
+            'jurusan' => 'TKJ',
+            'no' => 3
         ]);
     }
 }

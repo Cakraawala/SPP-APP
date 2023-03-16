@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->integer('nisn')->unique();
             $table->string('nama');
+            $table->string('nisn')->unique();
             $table->foreignId('id_kelas')->index();
             $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('alamat');
-            // $table->foreignId('id_users')->index();
-            // $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('password');
             $table->string('no_telp');
+            $table->foreignId('id_user')->index();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->enum('jk', ['?', 'L', 'P'])->default('?');
+            $table->date('birthdate')->nullable();
+            $table->string('tahun_ajaran');
             $table->timestamps();
         });
     }
