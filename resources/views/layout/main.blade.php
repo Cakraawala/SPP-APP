@@ -17,15 +17,19 @@
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
-        @include('layout.sidebar')
+        <div class="heder">
+            @include('layout.sidebar')
+        </div>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    @include('layout.topbar')
-                </nav>
+                <div class="topber">
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        @include('layout.topbar')
+                    </nav>
+                </div>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

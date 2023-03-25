@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SPPController;
+use App\Http\Controllers\UserController;
 use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::post('/authenticate', [LoginController::class, 'authenticate']);
 Route::any('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+Route::get('/dashboard/laporan',[DashboardController::class, 'report']);
 
 
 Route::controller(SiswaController::class)->group(function(){
@@ -62,4 +64,16 @@ Route::controller(SPPController::class)->group(function(){
 
 Route::controller(PembayaranController::class)->group(function(){
     Route::get('/dashboard/pembayaran', 'index');
+    Route::post('/dashboard/pembayaran/store', 'store');
+    Route::get('/dashboard/pembayaran/{id}', 'show');
+    Route::GET('/dashboard/pembayaran/{id}/invoice', 'invoice');
 });
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/dashboard/user', 'index');
+    Route::get('/dashboard/user/{id}', 'edit');
+    Route::post('/dashboard/user/store', 'store');
+    Route::post('/dashboard/user/{id}/update','post');
+    Route::any('/dashboard/user/{id}/delete', 'destroy');
+});
+

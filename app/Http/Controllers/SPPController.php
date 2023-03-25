@@ -40,7 +40,7 @@ class SPPController extends Controller
     }
 
     public function destroy($id){
-        dd($id);
+        // dd($id);/
         $spp = SPP::findOrFail($id);
         $spp->delete();
         Alert::success('Success', 'Data Berhasil di Hapus');

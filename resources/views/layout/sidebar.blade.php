@@ -1,5 +1,5 @@
  <!-- Sidebar -->
- <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+ <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar" style="height:100%;">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -57,7 +57,7 @@
         <div id="collapsethree" class="collapse" aria-labelledby="headingthree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Inner</h6>
-                <a class="collapse-item" href="/dashboard/data/user">User & Admin</a>
+                <a class="collapse-item" href="/dashboard/user">User & Admin</a>
 
                 {{-- <a class="collapse-item" href="/dashboard/data/type">Type Room</a> --}}
             </div>
@@ -70,7 +70,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ Request::is('dashboard/order*') ? 'active' : ''}}">
+    <li class="nav-item {{ Request::is('dashboard/pembayaran*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
@@ -81,7 +81,7 @@
                 <h6 class="collapse-header">Data</h6>
                 <a class="collapse-item" href="/dashboard/pembayaran">Pembayaran</a>
                 <h6 class="collapse-header">Reports</h6>
-                <a class="collapse-item" href="/dashboard/order">Laporan</a>
+                <a class="collapse-item" href="/dashboard/laporan">Laporan</a>
 
             </div>
         </div>

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Pembayaran;
 use App\Models\Siswa;
+use App\Models\SPP;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -25,7 +28,15 @@ class SiswaController extends Controller
 
     public function show($id){
        $siswa = Siswa::findOrFail($id);
-       return view('dashboard.siswa.show', compact('siswa'));
+       $p = Pembayaran::where('id_siswa' , $id)->get();
+       $now = Carbon::now()->isoformat('Y');
+       $kurang = 0;
+       foreach($p as $pembayaran){
+           $kurang += $pembayaran->jumlah_bayar;
+       }
+       $spp =SPP::where('tahun_ajaran', $now)->first()->nominal;
+       $sisa = $spp - $kurang;
+       return view('dashboard.siswa.show', compact('siswa', 'spp','sisa', 'kurang'));
     }
 
     public function store(Request $request){

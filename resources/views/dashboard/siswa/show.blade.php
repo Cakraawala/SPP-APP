@@ -10,8 +10,15 @@
           <div class="card mb-4">
             <div class="card-body text-center">
               <img src="/img/default-user.jpg" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
+                class="rounded-circle img-fluid" style="width: 120px;">
               <h5 class="my-3">{{ $siswa->nama }}</h5>
+              <p class="text-muted">
+                @php
+                    $psg = $siswa->User->username;
+                    echo '@'.$psg;
+                @endphp
+
+              </p>
               <p class="text-muted mb-1">@if($siswa->Kelas->jurusan == "MM")Mutimedia @elseif ($siswa->Kelas->jurusan == "RPL")Rekayasa Perangkat Lunak @else Teknik Komputer Jaringan @endif</p>
               <p class="text-muted mb-4">Tahun Ajaran {{ $siswa->tahun_ajaran }}</p>
               <div class="d-flex justify-content-center mb-2">
@@ -25,14 +32,21 @@
             <div class="card-body p-0">
               <ul class="list-group list-group-flush rounded-3">
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fas fa-globe fa-lg text-warning"></i>
-                  <p class="mb-0">https://mdbootstrap.com</p>
+                  {{-- <i class="fas fa-globe fa-lg text-warning"></i> --}}
+                  TOTAL Pembayaran
+                  <p class="mb-0">Rp. {{number_format($kurang)}}</p>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                  <p class="mb-0">mdbootstrap</p>
+                  {{-- <i class="fas fa-globe fa-lg text-warning"></i> --}}
+                  TOTAL SPP
+                  <p class="mb-0">Rp. {{number_format($spp)}}</p>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  {{-- <i class="fab fa-github fa-lg" style="color: #333333;"></i> --}}
+                  Sisa Pembayaran
+                  <p class="mb-0">Rp. {{number_format($sisa)}}</p>
+                </li>
+                {{-- <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                   <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
                   <p class="mb-0">@mdbootstrap</p>
                 </li>
@@ -43,7 +57,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                   <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
                   <p class="mb-0">mdbootstrap</p>
-                </li>
+                </li> --}}
               </ul>
             </div>
           </div>
@@ -130,6 +144,26 @@
               </div>
 
               <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Tahun ajaran</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ $siswa->tahun_ajaran }}</p>
+                </div>
+              </div>
+
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Status</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">@if($siswa->tahun_ajaran > 2020) Siswa Aktif @else Tidak Aktif @endif</p>
+                </div>
+              </div>
+
+              <hr>
 
               <div class="row">
                 <div class="col-sm-3">
@@ -146,7 +180,7 @@
           </div>
 
 
-          <div class="row">
+          {{-- <div class="row">
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
@@ -213,7 +247,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
         </div>
 

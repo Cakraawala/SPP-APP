@@ -10,4 +10,8 @@ class SPP extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'spp';
+
+    public function Pembayaran(){
+        return $this->hasMany(Pembayaran::class, 'id');
+    }
 }

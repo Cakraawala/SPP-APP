@@ -17,4 +17,7 @@ class Siswa extends Model
     public function Kelas(){
         return $this->belongsTo(Kelas::class,'id_kelas');
     }
+    public function Pembayaran(){
+        return $this->hasMany(Pembayaran::class,'id');
+    }
 }
