@@ -16,7 +16,9 @@
               <p class="text-muted">Kelas {{ $p->Siswa->Kelas->kelas . ' ' . $p->Siswa->Kelas->jurusan . $p->Siswa->Kelas->no }} <br>Tahun Ajaran {{ $p->Siswa->tahun_ajaran }}</p>
               {{-- <p class="text-muted"></p> --}}
               <div class="d-flex justify-content-center mb-2">
+                @if (auth()->user()->is_admin == 1)
                 <a href="/dashboard/data/siswa/{{$p->Siswa->id}}/show" class="btn btn-primary">Lihat Data Siswa</a>
+                @endif
                 {{-- <button type="button" class="btn btn-outline-primary ms-1">Message</button> --}}
               </div>
             </div>
@@ -61,7 +63,7 @@
                               <p class="mb-0">Tanggal Bayar</p>
                             </div>
                             <div class="col-sm-9">
-                              <p class="text-muted mb-0">{{$p->tanggal_bayar }}</p>
+                              <p class="text-muted mb-0">{{$p->tanggal_bayar->isoformat('dddd, DD-MM-Y') }}</p>
                             </div>
                           </div>
 

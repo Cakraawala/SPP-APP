@@ -9,6 +9,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 class UserController extends Controller
 {
     public function index(){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
         $user = User::orderby('nama', 'asc')->where('is_admin', 1)->get();
         return view('dashboard.user.index', compact('user'));
     }
@@ -32,6 +38,12 @@ class UserController extends Controller
     }
 
     public function edit($id){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
         $user = User::findOrFail($id);
         return view('dashboard.user.edit', compact('user'));
     }

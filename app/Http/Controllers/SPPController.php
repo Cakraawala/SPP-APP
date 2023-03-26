@@ -9,6 +9,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 class SPPController extends Controller
 {
     public function index(){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
         $spp = SPP::orderby('id','desc')->get();
         return view('dashboard.spp.index', compact('spp'));
     }
@@ -24,6 +30,12 @@ class SPPController extends Controller
     }
 
     public function edit($id){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
         $spp = SPP::findOrFail($id);
         return view('dashboard.spp.edit', compact('spp'));
     }

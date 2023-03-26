@@ -4,6 +4,8 @@
 @endsection
 @section('content')
 
+@if (auth()->user()->is_admin == 1)
+
 <!--- MODAL FORM CREATE -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -115,29 +117,7 @@
         </thead>
         <tbody>
             @foreach ($pay as $s)
-            <!-- MODAL DELETE -->
-            {{-- <div class="modal fade" id="deletemodal{{ $s->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin Menghapus? </h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">Hapus Data Pembayaran <br><span class="text-danger fw-bold fs-6"> Warning!  Data tidak akan bisa dikembalikan. </span></div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <form action="/dashboard/data/pembayaran/{{$s->id}}/delete" method="post">
-                                @csrf
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
 
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            <!-- END MODAL -->
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $s->Siswa->nama }} {{ $s->Siswa->Kelas->kelas . ' ' . $s->Siswa->kelas->jurusan . $s->Siswa->kelas->no }}</td>
@@ -167,10 +147,67 @@
     $('#jumlah_bayar').keyup(function() {
         $('#showPaymentType').text('Rp. ' + parseFloat($(this).val(), 10).toFixed(2).replace(
                 /(\d)(?=(\d{3})+\.)/g, "$1.")
-            .toString());
-    });
+                .toString());
+            });
 
-</script>
+        </script>
+        @else
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="/img/default-user.jpg" alt="avatar"
+                          class="rounded-circle img-fluid" style="width: 120px;">
+                        <h5 class="my-3">{{ $siswa->nama }}</h5>
+                        <p class="text-muted mb-1">@if($siswa->Kelas->jurusan == "MM")Mutimedia @elseif ($siswa->Kelas->jurusan == "RPL")Rekayasa Perangkat Lunak @else Teknik Komputer Jaringan @endif</p>
+                        <p class="text-muted mb-4">Tahun Ajaran {{ $siswa->tahun_ajaran }}</p>
+                        <div class="d-flex justify-content-center mb-2">
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <table class="table table-bordered" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tanggal</th>
+                            <th>Bulan</th>
+                            <th>Tahun</th>
+                            <th>Nominal</th>
+                            <th>Invoice</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pay as $s)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $s->tanggal_bayar->isoformat('dddd DD-MM-Y') }}</td>
+                            <td>  @if($s->bulan_pembayaran ==1) Januari @elseif ($s->bulan_pembayaran == 2) Februari @elseif ($s->bulan_pembayaran == 3) Maret @elseif ($s->bulan_pembayaran == 4)  April
+                                @elseif ($s->bulan_pembayaran == 5) Mei @elseif ($s->bulan_pembayaran == 6)  Juni @elseif ($s->bulan_pembayaran == 7)  Juli
+                                @elseif ($s->bulan_pembayaran == 8) Agustus
+                                @elseif ($s->bulan_pembayaran == 9) September @elseif ($s->bulan_pembayaran == 10) Oktober @elseif ($s->bulan_pembayaran == 11) November
+                                @else  Desember @endif</td>
+                            <td>{{ $s->tahun_pembayaran }}</td>
+                            <td>Rp.{{ number_format($s->jumlah_bayar) }}</td>
+                            <td>{{ $s->invoice }}</td>
+                            <td>
+                                <a class="text-primary" href="/dashboard/pembayaran/{{$s->id}}/invoice"><i class="fas fa-print"></i></a>
+                                <a class="text-success" href="/dashboard/pembayaran/{{$s->id}}"><i class="fas fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+            @endif
 
  @endsection
 

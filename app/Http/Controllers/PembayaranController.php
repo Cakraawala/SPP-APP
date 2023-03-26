@@ -12,10 +12,27 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PembayaranController extends Controller
 {
     public function index(){
-        $pay = Pembayaran::get();
-        $siswa = Siswa::orderBy('id_kelas', 'asc')->get();
-        $now = Carbon::now()->isoformat('Y-MM-D');
-        return view('dashboard.pembayaran.index',compact('pay', 'siswa','now'));
+        if(auth()->user()->is_admin == 1){
+            if(auth()->guest()){
+                return redirect('/');
+            }
+            if(auth()->user()->is_admin == 0){
+                abort(404);
+            }
+            $pay = Pembayaran::get();
+            $siswa = Siswa::orderBy('id_kelas', 'asc')->get();
+            $now = Carbon::now()->isoformat('Y-MM-D');
+            return view('dashboard.pembayaran.index',compact('pay', 'siswa','now'));
+        }
+        else {
+            if(auth()->guest()){
+                return redirect('/');
+            }
+            $auth = Auth()->user()->Siswa->id;
+            $pay = Pembayaran::where('id_siswa', $auth)->orderby('tahun_pembayaran', 'asc')->orderby('bulan_pembayaran', 'asc')->get();
+            $siswa = Siswa::where('id', $auth)->first();
+            return view('dashboard.pembayaran.index', compact('pay', 'siswa'));
+        }
     }
 
     public function store(Request $request){
@@ -91,6 +108,30 @@ class PembayaranController extends Controller
     }
 
     public function show($id){
+        if(auth()->user()->is_admin == 1){
+            if(auth()->guest()){
+                return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
+        $p = Pembayaran::where('id',$id)->first();
+        $siswabayar = Pembayaran::where('id_siswa', $p->Siswa->id)->get();
+        $kurang = 0;
+        foreach($siswabayar as $pembayaran){
+            $kurang += $pembayaran->jumlah_bayar;
+        }
+        $spp = SPP::where('id', $p->SPP->id)->first()->nominal;
+        $sisa = $spp - $kurang;
+        return view('dashboard.pembayaran.show', compact('p', 'sisa', 'spp'));
+    } else {
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        $p = Pembayaran::where('id',$id)->first();
+        if($p->Siswa->id != auth()->user()->Siswa->id){
+            return abort(404);
+        }
         $p = Pembayaran::where('id',$id)->first();
         $siswabayar = Pembayaran::where('id_siswa', $p->Siswa->id)->get();
         $kurang = 0;
@@ -101,8 +142,17 @@ class PembayaranController extends Controller
         $sisa = $spp - $kurang;
         return view('dashboard.pembayaran.show', compact('p', 'sisa', 'spp'));
     }
+    }
 
     public function invoice($id){
+        if(auth()->user()->is_admin == 1){
+
+            if(auth()->guest()){
+                return redirect('/');
+        }
+        // if(auth()->user()->is_admin == 0){
+        //     abort(404);
+        // }
         $p = Pembayaran::findOrFail($id);
         $siswabayar = Pembayaran::where('id_siswa', $p->Siswa->id)->get();
         $kurang = 0;
@@ -112,5 +162,23 @@ class PembayaranController extends Controller
         $spp = SPP::where('id', $p->SPP->id)->first()->nominal;
         $sisa = $spp - $kurang;
         return view('dashboard.pembayaran.invoice',compact('p','sisa'));
+        }
+        else {
+            if(auth()->guest()){
+                return redirect('/');
+            }
+            $p = Pembayaran::findOrFail($id);
+            if($p->Siswa->id != auth()->user()->Siswa->id){
+                return abort(404);
+            }
+            $siswabayar = Pembayaran::where('id_siswa', $p->Siswa->id)->get();
+            $kurang = 0;
+            foreach($siswabayar as $pembayaran){
+                $kurang += $pembayaran->jumlah_bayar;
+            }
+            $spp = SPP::where('id', $p->SPP->id)->first()->nominal;
+            $sisa = $spp - $kurang;
+            return view('dashboard.pembayaran.invoice',compact('p','sisa'));
+        }
     }
 }

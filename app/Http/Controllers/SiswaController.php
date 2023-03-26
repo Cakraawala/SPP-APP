@@ -27,6 +27,12 @@ class SiswaController extends Controller
     }
 
     public function show($id){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
        $siswa = Siswa::findOrFail($id);
        $p = Pembayaran::where('id_siswa' , $id)->get();
        $now = Carbon::now()->isoformat('Y');

@@ -9,6 +9,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 class KelasController extends Controller
 {
     public function index(){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
         $kelas = Kelas::orderBy('id', 'desc')->get();
         return view('dashboard.kelas.index', compact('kelas'));
     }
@@ -28,12 +34,24 @@ class KelasController extends Controller
         return redirect('/dashboard/data/kelas');
     }
     public function show($id){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
         $kelas = Kelas::findOrFail($id);
         $siswa = $kelas->Siswa->all();
         // dd($siswa);
         return view('dashboard.kelas.show', compact('kelas','siswa'));
     }
     public function edit($id){
+        if(auth()->guest()){
+            return redirect('/');
+        }
+        if(auth()->user()->is_admin == 0){
+            abort(404);
+        }
         $kelas = Kelas::FindOrFail($id);
         return view('dashboard.kelas.edit', compact('kelas'));
     }
