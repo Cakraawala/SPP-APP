@@ -2,31 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>INVOICE |  $p->invoice</title>
+    <title>INVOICE | {{ $p->invoice}}</title>
     <link rel="stylesheet" href="/bs/css/bootstrap.min.css">
     {{-- <link rel="stylesheet" href="/invoice/style.css" media="all" /> --}}
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <style>
-          @media print {
-  body * {
-    visibility: hidden;
+    <style type="text/css" media="print">
+ .heder {
+    display: none;
   }
-  #print * {
-    visibility: visible;
-    zoom: 100%;
-  }
-  #print {
-    position: absolute;
-    /* width: 100%;
-    width: 100%; */
-  }
-}
+ @page{
+    size: A3 landscape;
+ }
+
     </style>
 </head>
 <body>
-    <a href=""></a>
+    {{-- <a href="">aaa</a> --}}
     <div class="container mt-4 text-primary">
-        <div class="card shadow">
+        <div class="card heder shadow">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <a href="/dashboard/pembayaran" class="btn btn-primary">Kembali ke Pembayaran</a>

@@ -3,7 +3,22 @@
 <title>Dashboard | Pembayaran Index</title>
 @endsection
 @section('content')
+{{-- <script src = "https://ajax.aspnetCDN.com/ajax/jQuery/jQuery-3.3.1.min.js"> </script>
 
+<script>
+ $('#siswa').change(function() {
+   var selected_option = $(this).val();
+   $.ajax({
+      url: "/dashboard/pembayaran",
+      type: 'post',
+      cache: false,
+      success: function(return_data) {
+         $('#bulan').html(return_data);
+      }
+   });
+}); --}}
+
+</script>
 @if (auth()->user()->is_admin == 1)
 
 <!--- MODAL FORM CREATE -->
@@ -79,7 +94,7 @@
 
            </div>
            <div class="row mb-3">
-            <div class="col-sm-4"></div>
+            <div class="col-sm-4" id="showBulan"></div>
             <div class="col-sm-8"  id="showPaymentType"></div>
         </div>
         </div>
@@ -133,7 +148,9 @@
                 <td>{{ $s->invoice }}</td>
                 <td>{{ $s->created_at->isoformat('ddd    D-MM-Y') }}</td>
                 <td>
+                    @if ($s->jumlah_bayar >= ($s->Spp->nominal / 12))
                     <a class="text-primary" href="/dashboard/pembayaran/{{$s->id}}/invoice"><i class="fas fa-print"></i></a>
+                    @endif
                     <a class="text-success" href="/dashboard/pembayaran/{{$s->id}}"><i class="fas fa-eye"></i></a>
                     {{-- <a href="#" class="text-danger" data-target="#deletemodal{{ $s->id }}" data-toggle="modal"><i class="fas fa-trash"></i></a> --}}
                 </td>
@@ -146,11 +163,16 @@
 <script>
     $('#jumlah_bayar').keyup(function() {
         $('#showPaymentType').text('Rp. ' + parseFloat($(this).val(), 10).toFixed(2).replace(
-                /(\d)(?=(\d{3})+\.)/g, "$1.")
-                .toString());
-            });
-
-        </script>
+            /(\d)(?=(\d{3})+\.)/g, "$1.")
+            .toString());
+        });
+</script>
+{{-- <script>
+    $('#bulan').onselect(function() {
+        $('#showBulan').text()
+            .toString());
+        });
+</script> --}}
         @else
     <div class="container">
         <div class="row">
@@ -194,7 +216,7 @@
                             <td>Rp.{{ number_format($s->jumlah_bayar) }}</td>
                             <td>{{ $s->invoice }}</td>
                             <td>
-                                <a class="text-primary" href="/dashboard/pembayaran/{{$s->id}}/invoice"><i class="fas fa-print"></i></a>
+                                {{-- <a class="text-primary" href="/dashboard/pembayaran/{{$s->id}}/invoice"><i class="fas fa-print"></i></a> --}}
                                 <a class="text-success" href="/dashboard/pembayaran/{{$s->id}}"><i class="fas fa-eye"></i></a>
                             </td>
                         </tr>

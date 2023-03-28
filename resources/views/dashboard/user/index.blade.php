@@ -35,6 +35,18 @@
             </div>
                     <input type="hidden" name="is_admin" value="1">
            </div>
+           <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select name="level" id="level" class="form-select">
+                        <option value="petugas">Petugas</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <label for="level">Level</label>
+                </div>
+            </div>
+           </div>
 
         </div>
 
@@ -53,16 +65,17 @@
     <div class="container">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0">Data Rekapitulasi User Admin</h1>
-          <button data-toggle="modal" data-target="#staticBackdrop" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="margin-right:20px"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Siswa</button>
+          <button data-toggle="modal" data-target="#staticBackdrop" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="margin-right:20px"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Admin</button>
         </div>
 
         <table class="mt-4 table table-striped" id="myTable">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Username</th>
+                    <th>Nama</th>
                     <th>Password</th>
                     <th>Is Admin</th>
+                    <th>Level</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -92,10 +105,11 @@
                 </div>
                 <!-- END MODAL -->
                 <tr>
-                    <td>{{ $s->id }}</td>
-                    <td>{{ $s->username }}</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $s->nama }}</td>
                     <td>{{ $s->password }} </td>
                     <td>{{ $s->is_admin }}</td>
+                    <td>{{ $s->level }}</td>
                      <td>
                         <a class="text-warning" href="/dashboard/user/{{$s->id}}"><i class="fas fa-pen-alt"></i></a>
                         {{-- <a class="text-success" href="/dashboard/data/siswa/{{$s->id}}/show"><i class="fas fa-eye"></i></a> --}}

@@ -12,10 +12,10 @@ class UserController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
-        $user = User::orderby('nama', 'asc')->where('is_admin', 1)->get();
+        $user = User::orderby('nama', 'asc')->where('is_admin', 1)->where('level', 'petugas')->get();
         return view('dashboard.user.index', compact('user'));
     }
     public function store(Request $request){
@@ -24,14 +24,16 @@ class UserController extends Controller
             'username' => 'required',
             'nama' => 'required',
             'password' => 'required',
-            'is_admin' => 'required'
+            'is_admin' => 'required',
+            'level' => 'required'
         ]);
 
         User::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => bcrypt($request->password),
-            'is_admin' => $request->is_admin
+            'is_admin' => $request->is_admin,
+            'level' => $request->level
         ]);
         Alert::success('Success', 'Data Berhasil Dibuat!');
         return redirect('/dashboard/user');
@@ -41,7 +43,7 @@ class UserController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
         $user = User::findOrFail($id);
@@ -53,13 +55,15 @@ class UserController extends Controller
             'username' => 'nullable',
             'nama' => 'nullable',
             'password' => 'nullable',
-            'is_admin' => 'nullable'
+            'is_admin' => 'nullable',
+            'level' => 'nullable'
         ]);
         $user->update([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => bcrypt($request->password),
-            'is_admin' => $request->is_admin
+            'is_admin' => $request->is_admin,
+            'level' => $request->level
         ]);
         Alert::success('Success', 'Data Berhasil DiUpdate!');
         return redirect('/dashboard/user');

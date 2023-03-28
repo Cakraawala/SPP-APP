@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -12,10 +13,11 @@ class KelasController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
-        $kelas = Kelas::orderBy('id', 'desc')->get();
+        // dd(auth()->user()->level);
+        $kelas = Kelas::orderBy('id', 'asc')->get();
         return view('dashboard.kelas.index', compact('kelas'));
     }
 
@@ -37,19 +39,22 @@ class KelasController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
         $kelas = Kelas::findOrFail($id);
+        $man = Siswa::where('id_kelas', $id)->where('jk', 'L')->count();
+        $woman = Siswa::where('id_kelas', $id)->where('jk', 'P')->count();
+        // dd($man);
         $siswa = $kelas->Siswa->all();
         // dd($siswa);
-        return view('dashboard.kelas.show', compact('kelas','siswa'));
+        return view('dashboard.kelas.show', compact('kelas','siswa','man','woman'));
     }
     public function edit($id){
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
         $kelas = Kelas::FindOrFail($id);

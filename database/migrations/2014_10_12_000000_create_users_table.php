@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('password');
             $table->boolean('is_admin')->default(false);
+            $table->enum('level', ['admin','petugas','siswa'])->default('siswa');
             $table->rememberToken();
             $table->timestamps();
         });

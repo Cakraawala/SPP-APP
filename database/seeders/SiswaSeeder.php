@@ -19,6 +19,14 @@ class SiswaSeeder extends Seeder
             'nama' => 'Admin',
             'password' => bcrypt('admin'),
             'is_admin' => 1,
+            'level' => 'admin',
+        ]);
+        User::create([
+            'username' => 'petugas',
+            'nama' => 'Petugas',
+            'password' => bcrypt('petugas'),
+            'is_admin' => 1,
+            'level' => 'petugas',
         ]);
 
         User::create([
@@ -63,43 +71,57 @@ class SiswaSeeder extends Seeder
             'is_admin' => 0,
         ]);
 
+        User::create([
+            'username' => 'siswa10156',
+            'nama' => 'Siswa10156',
+            'password' => bcrypt('siswa10156'),
+            'is_admin' => 0,
+        ]);
+        User::create([
+            'username' => 'siswa10157',
+            'nama' => 'Siswa10157',
+            'password' => bcrypt('siswa10157'),
+            'is_admin' => 0,
+        ]);
         Siswa::create([
             'nama' => 'Angger Cakra',
             'nisn' => 320666666,
-            'id_kelas' => 3,
+            'id_kelas' => 1,
+            'jk' => 'L',
             'alamat' => 'Grand Kahuripan',
-            'no_telp' => '08123123213',
-            'id_user' => '2',
-            'tahun_ajaran' => '2022'
-        ]);
-
-        Siswa::create([
-            'nama' => 'Firenze Higa',
-            'nisn' => 320777777,
-            'id_kelas' => 2,
-            'alamat' => 'Venezia Residence',
             'no_telp' => '08123123213',
             'id_user' => '3',
             'tahun_ajaran' => '2022'
         ]);
 
         Siswa::create([
-            'nama' => 'Doni Irawan',
-            'nisn' => 320555555,
-            'id_kelas' => 7,
-            'alamat' => 'Grand Kahuripan',
+            'nama' => 'Firenze Higa',
+            'nisn' => 320777777,
+            'id_kelas' => 1,
+            'jk' => 'L',
+            'alamat' => 'Venezia Residence',
             'no_telp' => '08123123213',
             'id_user' => '4',
             'tahun_ajaran' => '2022'
         ]);
 
         Siswa::create([
-            'nama' => 'Fardan Septian',
-            'nisn' => 320333333,
-            'id_kelas' => 6,
+            'nama' => 'Doni Irawan',
+            'nisn' => 320555555,
+            'id_kelas' => 2,
             'alamat' => 'Grand Kahuripan',
             'no_telp' => '08123123213',
             'id_user' => '5',
+            'tahun_ajaran' => '2022'
+        ]);
+
+        Siswa::create([
+            'nama' => 'Fardan Septian',
+            'nisn' => 320333333,
+            'id_kelas' => 3,
+            'alamat' => 'Grand Kahuripan',
+            'no_telp' => '08123123213',
+            'id_user' => '6',
             'tahun_ajaran' => '2022'
         ]);
 
@@ -109,7 +131,7 @@ class SiswaSeeder extends Seeder
             'id_kelas' => 4,
             'alamat' => 'Cimanggung',
             'no_telp' => '08123123213',
-            'id_user' => '6',
+            'id_user' => '7',
             'tahun_ajaran' => '2022'
         ]);
 
@@ -119,7 +141,28 @@ class SiswaSeeder extends Seeder
             'id_kelas' => 5,
             'alamat' => 'Permata',
             'no_telp' => '08123123213',
-            'id_user' => '7',
+            'id_user' => '8',
+            'tahun_ajaran' => '2022'
+        ]);
+
+        Siswa::create([
+            'nama' => 'Andini Novitasari',
+            'nisn' => 32022211,
+            'id_kelas' => 1,
+            'jk' => 'P',
+            'alamat' => 'Gunung putri',
+            'no_telp' => '08123126613',
+            'id_user' => '9',
+            'tahun_ajaran' => '2022'
+        ]);
+        Siswa::create([
+            'nama' => 'Amelia Safitri',
+            'nisn' => 32033333,
+            'id_kelas' => 1,
+            'jk' => 'P',
+            'alamat' => 'Gunung putra',
+            'no_telp' => '0813426613',
+            'id_user' => '10',
             'tahun_ajaran' => '2022'
         ]);
     }

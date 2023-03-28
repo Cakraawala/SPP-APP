@@ -53,7 +53,7 @@
                     <div class="row">
                         <div class="col-md-4 mt-3">
                             <label for="birthdate" class="form-label">Birthdate</label>
-                            <input type="date" class="form-control" id="birthdate" name ='birthdate' value="{}">
+                            <input type="date" class="form-control" id="birthdate" name ='birthdate' value="{{$siswa->birthdate}}">
                         </div>
 
                         <div class="col-md-4 mt-3">

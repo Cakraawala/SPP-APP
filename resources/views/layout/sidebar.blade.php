@@ -21,6 +21,7 @@
             <span>Dashboard</span></a>
     </li>
 
+    @if (auth()->user()->level == 'admin')
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -29,33 +30,34 @@
         Interface
     </div>
 
+
     <!-- Nav Item - Page s Collapse Menu -->
     <li class="nav-item {{ Request::is('dashboard/data*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Data</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Inner</h6>
-                <a class="collapse-item" href="/dashboard/data/siswa">Siswa</a>
-                <a class="collapse-item" href="/dashboard/data/kelas">Kelas</a>
-                <a class="collapse-item" href="/dashboard/data/spp">SPP</a>
-                {{-- <a class="collapse-item" href="/dashboard/data/type">Type Room</a> --}}
-            </div>
+        aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Data</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Inner</h6>
+            <a class="collapse-item" href="/dashboard/data/siswa">Siswa</a>
+            <a class="collapse-item" href="/dashboard/data/kelas">Kelas</a>
+            <a class="collapse-item" href="/dashboard/data/spp">SPP</a>
+            {{-- <a class="collapse-item" href="/dashboard/data/type">Type Room</a> --}}
         </div>
-    </li>
+    </div>
+</li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <!-- Divider -->
-    {{-- <hr class="sidebar-divider"> --}}
-    <li class="nav-item {{ Request::is('dashboard/user*') ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsethree"
-            aria-expanded="true" aria-controls="collapsethree">
-            <i class="fas fa-user ms-1"></i>
-            <span>User</span>
-        </a>
+<!-- Nav Item - Utilities Collapse Menu -->
+<!-- Divider -->
+{{-- <hr class="sidebar-divider"> --}}
+<li class="nav-item {{ Request::is('dashboard/user*') ? 'active' : ''}}">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsethree"
+    aria-expanded="true" aria-controls="collapsethree">
+    <i class="fas fa-user ms-1"></i>
+    <span>User</span>
+</a>
         <div id="collapsethree" class="collapse" aria-labelledby="headingthree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Inner</h6>
@@ -65,30 +67,35 @@
             </div>
         </div>
     </li>
+    @endif
     <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
         Addons
     </div>
 
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item {{ Request::is('dashboard/pembayaran*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Transaksi</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Data</h6>
-                <a class="collapse-item" href="/dashboard/pembayaran">Pembayaran</a>
-                <h6 class="collapse-header">Reports</h6>
-                <a class="collapse-item" href="/dashboard/laporan">Laporan</a>
+        aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Transaksi</span>
+    </a>
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Data</h6>
+            <a class="collapse-item" href="/dashboard/pembayaran">Pembayaran</a>
+            @if (auth()->user()->level == 'admin')
+            <h6 class="collapse-header">Reports</h6>
+            <a class="collapse-item" href="/dashboard/laporan">Laporan</a>
+            @endif
 
-            </div>
         </div>
-    </li>
-    {{-- <li class="nav-item">
+    </div>
+</li>
+
+{{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
@@ -163,9 +170,9 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data</h6>
-                <a class="collapse-item" href="/dashboard/pembayaran">Pembayaran</a>
-                <h6 class="collapse-header">Reports</h6>
-                <a class="collapse-item" href="/dashboard/laporan">Laporan</a>
+                <a class="collapse-item" href="/dashboard/pembayaran">History Pembayaran</a>
+                {{-- <h6 class="collapse-header">Reports</h6>
+                <a class="collapse-item" href="/dashboard/laporan">Laporan</a> --}}
 
             </div>
         </div>

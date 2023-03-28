@@ -82,13 +82,13 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-floating mb-3">
-                        <input required class="form-control" type="text" name="username" id="username" placeholder="a">
+                        <input required class="form-control" type="text" name="username" id="username" placeholder="a" value="siswa{{$usernameafter}}">
                     <label for="username">Username</label>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-floating mb-3">
-                        <input required placeholder="a" class="form-control" type="password" name="password" id="password">
+                        <input required placeholder="a" class="form-control" type="password" name="password" value="siswa{{$usernameafter}}" id="password">
                     <label for="password">Password</label>
                     </div>
                 </div>

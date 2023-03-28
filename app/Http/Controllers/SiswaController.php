@@ -17,32 +17,38 @@ class SiswaController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
         $kelas = Kelas::get();
-        $siswa = Siswa::orderBy('id_kelas','asc')->get();
-        // dd($siswa);
-        return view('dashboard.siswa.index', compact('kelas','siswa'));
+        $siswa = Siswa::orderBy('nama','asc')->orderBy('id_kelas','asc')->get();
+        $siswalast = Siswa::orderBy('id', 'desc')->first();
+        $username = $siswalast->User->username;
+        $usernameafter = $username[5].$username[6].$username[7].$username[8].$username[9] + 1;
+        // dd($usernameafter);
+        return view('dashboard.siswa.index', compact('kelas','siswa' ,'usernameafter'));
     }
 
     public function show($id){
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
        $siswa = Siswa::findOrFail($id);
        $p = Pembayaran::where('id_siswa' , $id)->get();
        $now = Carbon::now()->isoformat('Y');
+       $skrg = Carbon::now()->isoFormat('M');
        $kurang = 0;
        foreach($p as $pembayaran){
            $kurang += $pembayaran->jumlah_bayar;
        }
        $spp =SPP::where('tahun_ajaran', $now)->first()->nominal;
+       $harusdibayar = $spp/12* $skrg;
+    //    dd($harusdibayar*$skrg);
        $sisa = $spp - $kurang;
-       return view('dashboard.siswa.show', compact('siswa', 'spp','sisa', 'kurang'));
+       return view('dashboard.siswa.show', compact('siswa', 'spp','sisa', 'kurang', 'harusdibayar'));
     }
 
     public function store(Request $request){
@@ -86,7 +92,7 @@ class SiswaController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
         $kelas = Kelas::get();
@@ -122,7 +128,7 @@ class SiswaController extends Controller
 
     public function destroy($id){
         $siswa = Siswa::FindOrFail($id);
-        $siswa->delete();
+        $siswa->User->delete();
         Alert::success('Success', 'Data Berhasil di Hapus');
         return back();
     }

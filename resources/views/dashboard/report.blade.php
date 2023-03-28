@@ -71,18 +71,18 @@
 
             <div class="MyTable">
                 <div class="container me-4">
-                    <table style="margin-top: 20px" class="table table-bordered" >
+                    <table style="margin-top: 20px" class="table table-striped" >
                 </div>
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Siswa</th>
-                            <th>Nominal</th>
+                            <th>Tanggal</th>
                             <th>Admin</th>
                             <th>Bulan</th>
                             <th>Tahun</th>
                             <th>Invoice</th>
-                            <th>Tanggal</th>
+                            <th>Nominal</th>
                          </tr>
                     </thead>
                     <tbody>
@@ -94,8 +94,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $s->Siswa->nama }} {{ $s->Siswa->Kelas->kelas . ' ' . $s->Siswa->kelas->jurusan . $s->Siswa->kelas->no }}</td>
-                            <td>Rp.{{ number_format($s->jumlah_bayar,2,',','.') }}</td>
-                            {{-- <td>{{ $s->jumlah_bayar }}</td> --}}
+                            <td>{{ $s->tanggal_bayar->isoformat('ddd, D-MM-Y') }}</td>
                             <td>{{ $s->Admin->nama }}</td>
                             <td>@if($s->bulan_pembayaran ==1) Januari @elseif ($s->bulan_pembayaran == 2) Februari @elseif ($s->bulan_pembayaran == 3) Maret @elseif ($s->bulan_pembayaran == 4)  April
                                 @elseif ($s->bulan_pembayaran == 5) Mei @elseif ($s->bulan_pembayaran == 6)  Juni @elseif ($s->bulan_pembayaran == 7)  Juli
@@ -104,12 +103,21 @@
                                 @else  Desember @endif</td>
                             <td>{{ $s->tahun_pembayaran }}</td>
                             <td>{{ $s->invoice }}</td>
-                            <td>{{ $s->created_at->isoformat('ddd    D-MM-Y') }}</td>
+                            <td>Rp. {{ number_format($s->jumlah_bayar) }}</td>
                         </tr>
                         @endforeach
                         {{-- @endif --}}
 
                     </tbody>
+                    @if (auth()->user()->is_admin == 1)
+                    <tfoot>
+                        <tr>
+                            <th colspan="5"></th>
+                            <th colspan="2" class="text-center">Total Pendapatan</th>
+                            <td>  Rp. {{ number_format($pendapatan) }} </td>
+                        </tr>
+                    </tfoot>
+                    @endif
                 </table>
                 </div>
         </div>

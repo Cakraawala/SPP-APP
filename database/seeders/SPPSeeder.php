@@ -20,11 +20,11 @@ class SPPSeeder extends Seeder
         ]);
         SPP::create([
             'tahun_ajaran' => 2022,
-            'nominal' => 350000*12
+            'nominal' => 300000*12
         ]);
         SPP::create([
             'tahun_ajaran' => 2023,
-            'nominal' => 600000*12
+            'nominal' => 350000*12
         ]);
     }
 }

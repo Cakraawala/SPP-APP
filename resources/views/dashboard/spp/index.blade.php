@@ -84,7 +84,7 @@
                         <td>RP. {{ number_format($s->nominal,2, ',' ,'.') }}</td>
                         <td>
                             <a class="text-warning" href="/dashboard/data/spp/{{$s->id}}/edit"><i class="fas fa-pen-alt"></i></a>
-                            <a class="text-success" href="/dashboard/data/spp/{{$s->id}}"><i class="fas fa-eye"></i></a>
+                            {{-- <a class="text-success" href="/dashboard/data/spp/{{$s->id}}"><i class="fas fa-eye"></i></a> --}}
                             {{-- <a href="/dashboard/data/spp/{{$s->id}}/delete" class="me-5 text-danger"><i class="fas fa-trash"></i></a> --}}
                             <a href="#" class="me-5 text-danger" data-target="#modaldelete{{ $s->id }}" data-toggle="modal"><i class="fas fa-trash"></i></a>
                               <!-- MODAL DELETE -->

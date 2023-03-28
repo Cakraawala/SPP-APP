@@ -37,6 +37,11 @@
                   <p class="mb-0">Rp. {{number_format($kurang)}}</p>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    {{-- <i class="fab fa-github fa-lg" style="color: #333333;"></i> --}}
+                    TOTAL yang harus dibayar bulan ini
+                    <p class="mb-0">Rp. {{number_format($harusdibayar)}}</p>
+                  </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                   {{-- <i class="fas fa-globe fa-lg text-warning"></i> --}}
                   TOTAL SPP
                   <p class="mb-0">Rp. {{number_format($spp)}}</p>
@@ -46,18 +51,7 @@
                   Sisa Pembayaran
                   <p class="mb-0">Rp. {{number_format($sisa)}}</p>
                 </li>
-                {{-- <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                  <p class="mb-0">@mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li> --}}
+
               </ul>
             </div>
           </div>
@@ -128,7 +122,9 @@
                   <p class="mb-0">Jenis Kelamin</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{$siswa->jk}}</p>
+                  <p class="text-muted mb-0">@if ($siswa->jk == "P")
+                    Perempuan @elseif ($siswa->jk == "L") Laki Laki @else ?
+                  @endif</p>
                 </div>
               </div>
 

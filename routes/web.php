@@ -64,6 +64,7 @@ Route::controller(SPPController::class)->group(function(){
 
 Route::controller(PembayaranController::class)->group(function(){
     Route::get('/dashboard/pembayaran', 'index');
+    Route::post('/dashboard/pembayaran/{id}/edit', 'utang');
     Route::post('/dashboard/pembayaran/store', 'store');
     Route::get('/dashboard/pembayaran/{id}', 'show');
     Route::GET('/dashboard/pembayaran/{id}/invoice', 'invoice');

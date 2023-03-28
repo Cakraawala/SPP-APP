@@ -23,31 +23,31 @@ class KelasSeeder extends Seeder
             'jurusan' => 'MM',
             'no' => 1
         ]);
-        Kelas::create([
-            'kelas' => '10',
-            'jurusan' => 'MM',
-            'no' => 2
-        ]);
-        Kelas::create([
-            'kelas' => '10',
-            'jurusan' => 'MM',
-            'no' => 3
-        ]);
+        // Kelas::create([
+        //     'kelas' => '10',
+        //     'jurusan' => 'MM',
+        //     'no' => 2
+        // ]);
+        // Kelas::create([
+        //     'kelas' => '10',
+        //     'jurusan' => 'MM',
+        //     'no' => 3
+        // ]);
         Kelas::create([
             'kelas' => '10',
             'jurusan' => 'TKJ',
             'no' => 1
         ]);
-        Kelas::create([
-            'kelas' => '10',
-            'jurusan' => 'TKJ',
-            'no' => 2
-        ]);
-        Kelas::create([
-            'kelas' => '10',
-            'jurusan' => 'TKJ',
-            'no' => 3
-        ]);
+        // Kelas::create([
+        //     'kelas' => '10',
+        //     'jurusan' => 'TKJ',
+        //     'no' => 2
+        // ]);
+        // Kelas::create([
+        //     'kelas' => '10',
+        //     'jurusan' => 'TKJ',
+        //     'no' => 3
+        // ]);
 
 
 
@@ -61,31 +61,31 @@ class KelasSeeder extends Seeder
             'jurusan' => 'MM',
             'no' => 1
         ]);
-        Kelas::create([
-            'kelas' => '11',
-            'jurusan' => 'MM',
-            'no' => 2
-        ]);
-        Kelas::create([
-            'kelas' => '11',
-            'jurusan' => 'MM',
-            'no' => 3
-        ]);
+        // Kelas::create([
+        //     'kelas' => '11',
+        //     'jurusan' => 'MM',
+        //     'no' => 2
+        // ]);
+        // Kelas::create([
+        //     'kelas' => '11',
+        //     'jurusan' => 'MM',
+        //     'no' => 3
+        // ]);
         Kelas::create([
             'kelas' => '11',
             'jurusan' => 'TKJ',
             'no' => 1
         ]);
-        Kelas::create([
-            'kelas' => '11',
-            'jurusan' => 'TKJ',
-            'no' => 2
-        ]);
-        Kelas::create([
-            'kelas' => '11',
-            'jurusan' => 'TKJ',
-            'no' => 3
-        ]);
+        // Kelas::create([
+        //     'kelas' => '11',
+        //     'jurusan' => 'TKJ',
+        //     'no' => 2
+        // ]);
+        // Kelas::create([
+        //     'kelas' => '11',
+        //     'jurusan' => 'TKJ',
+        //     'no' => 3
+        // ]);
 
 
 
@@ -99,30 +99,30 @@ class KelasSeeder extends Seeder
             'jurusan' => 'MM',
             'no' => 1
         ]);
-        Kelas::create([
-            'kelas' => '12',
-            'jurusan' => 'MM',
-            'no' => 2
-        ]);
-        Kelas::create([
-            'kelas' => '12',
-            'jurusan' => 'MM',
-            'no' => 3
-        ]);
+        // Kelas::create([
+        //     'kelas' => '12',
+        //     'jurusan' => 'MM',
+        //     'no' => 2
+        // ]);
+        // Kelas::create([
+        //     'kelas' => '12',
+        //     'jurusan' => 'MM',
+        //     'no' => 3
+        // ]);
         Kelas::create([
             'kelas' => '12',
             'jurusan' => 'TKJ',
             'no' => 1
         ]);
-        Kelas::create([
-            'kelas' => '12',
-            'jurusan' => 'TKJ',
-            'no' => 2
-        ]);
-         Kelas::create([
-            'kelas' => '12',
-            'jurusan' => 'TKJ',
-            'no' => 3
-        ]);
+        // Kelas::create([
+        //     'kelas' => '12',
+        //     'jurusan' => 'TKJ',
+        //     'no' => 2
+        // ]);
+        //  Kelas::create([
+        //     'kelas' => '12',
+        //     'jurusan' => 'TKJ',
+        //     'no' => 3
+        // ]);
     }
 }

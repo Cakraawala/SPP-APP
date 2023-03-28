@@ -12,7 +12,7 @@ class SPPController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
         $spp = SPP::orderby('id','desc')->get();
@@ -33,7 +33,7 @@ class SPPController extends Controller
         if(auth()->guest()){
             return redirect('/');
         }
-        if(auth()->user()->is_admin == 0){
+        if(auth()->user()->is_admin == 0 or auth()->user()->level == "petugas"){
             abort(404);
         }
         $spp = SPP::findOrFail($id);

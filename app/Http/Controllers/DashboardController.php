@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\SPP;
@@ -15,8 +16,28 @@ class DashboardController extends Controller
             return redirect('/');
         }
         if(auth()->user()->is_admin == 1){
-            // abort(404);
-            return view('index');
+            $rpl = Kelas::where('jurusan', 'rpl')->get();
+            $tkjcount = 0;
+            $rplcount = 0;
+            $mmcount = 0;
+            $total = 0;
+            foreach($rpl as $r){
+                $rplcount += $r->Siswa->count();
+            }
+            $mm = Kelas::where('jurusan', 'mm')->get();
+            foreach($mm as $m){
+                $mmcount += $m->Siswa->count();
+            }
+            $tkj = Kelas::where('jurusan', 'tkj')->get();
+            foreach($tkj as $t){
+                $tkjcount += $t->Siswa->count();
+            }
+            $tcount = Pembayaran::count();
+            $pembayaran = Pembayaran::get();
+            foreach($pembayaran as $p){
+                $total += $p->jumlah_bayar;
+            }
+            return view('index', compact('tkjcount', 'rplcount', 'mmcount','tcount','total'));
         } else {
             $siswa = Siswa::where('id', auth()->user()->Siswa->id)->first();
             $p = Pembayaran::where('id_siswa' , auth()->user()->Siswa->id)->get();
@@ -33,32 +54,30 @@ class DashboardController extends Controller
 
     }
     public function report(Request $request){
-       if(auth()->user()->is_admin == 1){
-
+       if(auth()->user()->level == "admin"){
            if(auth()->guest()){
                return redirect('/');
             }
             if(auth()->user()->is_admin == 0){
             abort(404);
-        }
+            }
         if($request->bulan != 0){
             $p = Pembayaran::where('bulan_pembayaran', $request->bulan)->get();
             $bulan = $request->bulan;
             $total = $p->count();
-            // dd($total);
-        // }elseif($request->bulan == 0){
-        //     $p = Pembayaran::get();
-        //     $bulan = null;
-        //     $total = $p->count();
-            // return redirect('/dashboard/laporan');
         } else{
             $p = Pembayaran::get();
             $bulan = null;
             $total = $p->count();
         }
-        return view('dashboard.report', compact('p', 'bulan','total'));
-    }
-    else{
+        $pendapatan = 0;
+        foreach($p as $pp){
+            $pendapatan += $pp->jumlah_bayar;
+        }
+        return view('dashboard.report', compact('p', 'bulan','total','pendapatan'));
+        }
+
+        else{
         if($request->bulan != 0){
             $p = Pembayaran::where('bulan_pembayaran', $request->bulan)->where('id_siswa', auth()->user()->Siswa->id)->get();
             $bulan = $request->bulan;
@@ -71,6 +90,6 @@ class DashboardController extends Controller
         }
         return view('dashboard.report', compact('p', 'bulan','total'));
 
-    }
+        }
     }
 }
