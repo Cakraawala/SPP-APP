@@ -9,9 +9,15 @@
 
 
 
-## About Laravel
+## Pengenalan Konsep Aplikasi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+SPP-APP adalah Project aplikasi Pembayaran SPP berbasis web yang menggunakan Framework Laravel.
+Project ini berisi CRUD Siswa, SPP, Kelas, Petugas. Dan penginputan data Pembayaran.
+Aplikasi ini menyediakan 3 role berikut :
+- Admin (Create,Read,Update,Delete semua data)
+- Petugas (Create Transaksi, dan laporan)
+- Siswa (Read data history Pembayaran)
+
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
