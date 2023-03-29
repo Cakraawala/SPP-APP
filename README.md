@@ -12,57 +12,35 @@
 ## Pengenalan Konsep Aplikasi
 
 SPP-APP adalah Project aplikasi Pembayaran SPP berbasis web yang menggunakan Framework Laravel.
-Project ini berisi CRUD Siswa, SPP, Kelas, Petugas. Dan penginputan data Pembayaran.
-### Aplikasi ini menyediakan 3 role berikut :
-- Admin (Create,Read,Update,Delete semua data)
-- Petugas (Create Transaksi, dan laporan)
-- Siswa (Read data history Pembayaran)
+Project ini berisi CRUD Siswa, SPP, Kelas, Petugas. Dan penginputan data Pembayaran secara offline.
 
-## Autentikasi Role Admin,Petugas, dan Siswa 
-Admin = 
+
+## Authentikasi 
+Aplikasi ini menyediakan 3 role berikut :
+### Admin
+Admin memiliki tugas yang sangat kompleks, seperti membuat, mengedit dan menghapus data Siswa,Petugas,SPP,Kelas, bahkan Transaksi sekaligus.
 - Username : admin
 - Password : admin (same as username)
 
-Petugas = 
+### Petugas
+Petugas berkedudukan dibawah admin, Petugas memiliki tugas untuk membuat data pembayaran yang telah dilakukan oleh siswa.
 - Username : petugas
 - Password : petugas (same as username)
 
-Siswa = 
-- Username : siswa10150
-- Password : siswa10150 (same as username)
-- 
-## Laravel Sponsors
+### Siswa
+Siswa berperan sebagai konsumen, siswa dapat melihat history pembayaran dan profile nya sendiri.
+- Username : siswa10150 / siswa10151  (...etc)
+- Password : siswa10150 / siswa10151  (same as username)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Setting UP
+Menyiapkan dan mensetting project SPP-APP. require (Composer v2.2.4 ,Git, MYSQL PHP > v5 (v8.1.1) )
+- Buka CMD atau Aplikasi Command lainnya
+- Masuk ke Directory apa saja untuk menyiapkan folder project. Contoh (cd C:\xampp\htdocs
+- Download / Clone Project ini dengan cara git clone https://github.com/Cakraawala/SPP-APP.git atau dengan mendownload langsung file zip dan pindahkan ke directory yang telah disiapkan.
+- Setelah project berhasil di unduh ketikan Composer install dan tunggu hingga selesai diunduh.
+- Buat database MYSQL dan Buka project SPP-APP, Cari file dengan nama .envexample kemudian edit nama file tersebut menjadi .env dan buka file tersebut.
+- Setelah file dibuka, Ubah Database_name dan lainnya sesuai dengan database yang baru dibuat
+- Buka CMD kembali Ketik php artisan key:generate dan php artisan migrate --seed / php artisan migrate:fresh --seed. Setelah data berhasil di dapatkan lalu jalankan Project dengan PHP ARTISAN SERVE.
+- Project Berhasil DiClone.
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Asset Foto
