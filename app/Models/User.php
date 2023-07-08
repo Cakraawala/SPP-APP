@@ -29,8 +29,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function Siswa(){
-        return $this->hasOne(Siswa::class, 'id');
+    public function Siswa()
+    {
+        return $this->hasOne(Siswa::class, 'id_user');
     }
     /**
      * The attributes that should be cast.
